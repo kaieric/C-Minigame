@@ -1,0 +1,5 @@
+Note to self, would like to make the trees sway back and forth, possibly fastest transition in the middle, so frames 1 > 8 > 1 again, with the closer to frame 4, the faster the transition, so there appears to be a banding effect. make quadratic. Swaying in the wind!.
+
+Simple early way to show pollution: Just have a red mask over the sprites, and have the hue increase in opacity over time. At maximum, maybe have a glitch animation, and the underlying item turns grey, to show it is dead. Also the underlying should have no animation.
+
+Victory condition variable: Something called capital. Buildings have capital value, and maybe have a building that turns raw resources into liquid capital, which is the resource used to construct buildings. You win the game by reaching X amount of capital, which requires you necessarily to have processed 80+ percent of map resources. No mountains, just wood > factory, and maybe if there is time, a water pollution mechanic.

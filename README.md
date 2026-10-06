@@ -1,3 +1,10 @@
+# Framework
+
+The C++ starter framework is in `src/`. Read [docs/Framework.md](docs/Framework.md)
+for build instructions, the file map, C++ ownership explanations, and suggested
+implementation steps. The design below describes the intended game; the starter
+currently implements only the title screen and a plain 5×5 board.
+
 # Minimalism:
 This game is meant to be incredibly minimalist, for a minigame game jam. Fixed window size, no camera movement, no haptics or sound. Title scene and end scene are the same minimalist black screens with centered text stating click to begin.
 

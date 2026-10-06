@@ -1,3 +1,12 @@
+---
+name: "workspace-developer"
+description: "A specialized agent tailored to this repository's tech stack."
+tools: 
+  - "edit"
+  - "search"
+  - "terminal"
+---
+
 # Project
 
 This is a small 2D game written in C++ using raylib.

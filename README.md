@@ -3,7 +3,7 @@
 The C++ starter framework is in `src/`. Read [docs/Framework.md](docs/Framework.md)
 for build instructions, the file map, C++ ownership explanations, and suggested
 implementation steps. The design below describes the intended game; the starter
-currently implements only the title screen and a plain 5×5 board.
+currently implements only the title screen and a textured 5×5 board with mixed terrain.
 
 # Minimalism:
 This game is meant to be incredibly minimalist, for a minigame game jam. Fixed window size, no camera movement, no haptics or sound. Title scene and end scene are the same minimalist black screens with centered text stating click to begin.
@@ -26,10 +26,11 @@ Must be exportable to WebGL
 
 
 # Game mechanics:
-Three tile types: forests, plains, and mountains.
+Two tile types: plains and mountains. Each plains tile can contain one forest,
+factory, or open pit mine, or remain empty. Contents render over the plains sprite.
 * Mountains are impassable, uninteractable tiles- equivalent to blank spaces.
-* Plains can have buidings built on them (buildings should be something contained in a tile, rather than a tiletype themselves, one buiding per tile max).
-* Forests are the main focus of the game- they store a certain amount of wood, and passively regenerate this. If a forest reaches 0 or negative regen rate from pollution, sprite change to gray. Once reaching 0 lumber in this state, the first disappears.
+* Plains hold at most one item, stored separately from their terrain type.
+* Forests are contents of plains tiles and are the main focus of the game- they store a certain amount of wood, and passively regenerate this. If a forest reaches 0 or negative regen rate from pollution, sprite change to gray. Once reaching 0 lumber in this state, the first disappears.
 Two Buildings:
 * Sawmills to harvest the lumber passively. The lumber collects in the sawmill.
 * Factories take lumber from adjacent sawmill, and turn it into `capital`. Capital is used to build more buildings. Factories also produce pollution, which is a variable stored in a tile, and high pollution tiles spread to low pollution tiles. Pollution also reduces forest regen rate, and can turn it negative. Pollution represents the contamination motif of the game, cannot be done away with. Should also boost factory and sawmill workspeed.

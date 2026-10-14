@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Finite Yield</title>
+<style>html,body{margin:0;width:100%;height:100%;background:#000;overflow:hidden}body{display:grid;place-items:center}canvas{display:block;width:min(100vw,calc(100vh * 16 / 9));height:auto;aspect-ratio:16/9;image-rendering:pixelated;outline:none}#status{position:absolute;color:#c5c4cc;font:16px monospace;max-width:90vw;white-space:pre-wrap;text-align:center}</style></head>
+<body><canvas id="canvas" width="1280" height="720" tabindex="0" oncontextmenu="event.preventDefault()"></canvas><div id="status">Loading Finite Yield...</div>
+<script>
+var canvas = document.getElementById('canvas');
+var startupFailed = false;
+function showStartupError(message) {
+  startupFailed = true;
+  var status = document.getElementById('status');
+  if (!status) {
+    status = document.createElement('div');
+    status.id = 'status';
+    document.body.appendChild(status);
+  }
+  status.style.color = '#ff5555';
+  status.textContent = 'Finite Yield could not start.\n' + String(message) +
+    '\nUse http://127.0.0.1:8000 with the local server, and check the browser console.';
+}
+window.addEventListener('error', function(event) {
+  showStartupError(event.message || 'Failed to load ' + (event.target.src || 'a game file'));
+}, true);
+window.addEventListener('unhandledrejection', function(event) {
+  showStartupError(event.reason);
+});
+canvas.addEventListener('pointerdown', function() { canvas.focus(); });
+var Module = {
+  canvas: canvas,
+  print: function(message) { console.log(message); },
+  printErr: function(message) { console.error(message); },
+  onAbort: showStartupError,
+  setStatus: function(text) {
+    var status = document.getElementById('status');
+    if (status && !startupFailed) status.textContent = text;
+  },
+  onRuntimeInitialized: function() {
+    var status = document.getElementById('status');
+    if (status && !startupFailed) status.remove();
+    canvas.focus();
+  }
+};
+</script>
+<script async src="finite_yield.js"></script>
+</body></html>
